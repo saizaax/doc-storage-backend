@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: "docstorage"
+      POSTGRES_USER: "saizaax"
+      POSTGRES_PASSWORD: "xaazias"
+    ports:
+      - "2345:5432"
+    networks:
+      - default
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  default:
+    external: false
+
+volumes:
+  postgres-data:
