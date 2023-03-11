@@ -16,5 +16,5 @@ export const errorHandler = (
 }
 
 export const notFoundHandler = (req: Request, res: Response) => {
-    res.status(404).send({ error: "Not Found" })
+  res.status(404).send({ error: "Not Found" })
 }

@@ -8,7 +8,72 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(uuid())
-  email String  @unique
-  name  String?
+  id         String     @id @default(uuid())
+  email      String     @unique
+  username   String     @unique
+  password   String
+  created_at DateTime
+  avatar     String
+  Document   Document[]
+}
+
+model Document {
+  id          String   @id @default(uuid())
+  user_id     User     @relation(fields: [userId], references: [id])
+  name        String
+  description String
+  size        Int
+  created_at  DateTime
+  updated_at  DateTime
+  userId      String
+  File        File[]
+}
+
+model File {
+  id          String        @id @default(uuid())
+  document_id Document      @relation(fields: [documentId], references: [id])
+  name        String
+  format      String
+  size        Int
+  url         String
+  created_at  DateTime
+  updated_at  DateTime
+  documentId  String
+  Format      Format[]
+  Text        Text[]
+  Translation Translation[]
+}
+
+model Format {
+  id         String   @id @default(uuid())
+  file_id    File     @relation(fields: [fileId], references: [id])
+  name       String
+  format     String
+  size       Int
+  url        String
+  created_at DateTime
+  updated_at DateTime
+  fileId     String
+}
+
+model Text {
+  id          String        @id @default(uuid())
+  file_id     File          @relation(fields: [fileId], references: [id])
+  language    String
+  content     String
+  created_at  DateTime
+  updated_at  DateTime
+  fileId      String
+  Translation Translation[]
+}
+
+model Translation {
+  id         String   @id @default(uuid())
+  file_id    File     @relation(fields: [fileId], references: [id])
+  text_id    Text     @relation(fields: [textId], references: [id])
+  content    String
+  created_at DateTime
+  updated_at DateTime
+  fileId     String
+  textId     String
 }

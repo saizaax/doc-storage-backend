@@ -1,10 +1,11 @@
 import express from "express"
 
 import usersController from "@controllers/users.controller"
+import { authenticateToken } from "@middlewares/auth.middleware"
 
 const router = express.Router()
 
-router.get("/", usersController.getAll)
-router.get("/:id", usersController.getById)
+router.get("/", authenticateToken, usersController.getAll)
+router.get("/:id", authenticateToken, usersController.getById)
 
 export default router
