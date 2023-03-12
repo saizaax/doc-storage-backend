@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 
 import users from "@services/users.service"
-import { UserRequest } from "@app-types/request.type"
+import { UserRequest } from "@app-types/request.types"
 
 async function getAll(req: UserRequest, res: Response, next: NextFunction) {
   try {
@@ -21,4 +21,15 @@ async function getById(req: UserRequest, res: Response, next: NextFunction) {
   }
 }
 
-export default { getAll, getById }
+async function getByToken(req: UserRequest, res: Response, next: NextFunction) {
+  try {
+    const userId = req.userId as string
+
+    res.json(await users.getById(userId))
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
+export default { getAll, getById, getByToken }

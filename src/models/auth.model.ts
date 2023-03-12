@@ -1,4 +1,4 @@
-import { AuthRequest } from "@app-types/auth.type"
+import { AuthRequest } from "@app-types/auth.types"
 import { prisma } from "src/index"
 
 async function register(data: AuthRequest) {
@@ -12,7 +12,5 @@ async function register(data: AuthRequest) {
     }
   })
 }
-
-async function login(data: AuthRequest) {}
 
 export default { register }

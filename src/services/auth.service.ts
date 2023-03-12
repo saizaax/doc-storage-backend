@@ -1,4 +1,4 @@
-import { AuthRequest, RefreshRequest } from "@app-types/auth.type"
+import { AuthRequest, RefreshRequest } from "@app-types/auth.types"
 import authModel from "@models/auth.model"
 import usersModel from "@models/users.model"
 import bcrypt from "bcryptjs"
