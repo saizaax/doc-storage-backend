@@ -1,12 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { AppError } from "@utils/AppError"
 
-export const errorHandler = (
-  error: AppError,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const errorHandler = (error: AppError, req: Request, res: Response, next: NextFunction) => {
   console.log(`⚠️ [Error]: ${error.message}`)
 
   const status = error.statusCode || 500

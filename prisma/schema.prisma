@@ -59,7 +59,6 @@ model Format {
 model Text {
   id          String        @id @default(uuid())
   file_id     File          @relation(fields: [fileId], references: [id])
-  language    String
   content     String
   created_at  DateTime
   updated_at  DateTime
@@ -71,6 +70,7 @@ model Translation {
   id         String   @id @default(uuid())
   file_id    File     @relation(fields: [fileId], references: [id])
   text_id    Text     @relation(fields: [textId], references: [id])
+  language   String
   content    String
   created_at DateTime
   updated_at DateTime

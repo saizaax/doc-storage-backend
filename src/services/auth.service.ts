@@ -24,15 +24,10 @@ async function login(data: AuthRequest) {
   const passwordMatch = await bcrypt.compare(password, user.password)
   if (!passwordMatch) ({ error: "Invalid credentials" })
 
-  const accessToken = jwt.sign(
-    { userId: user.id },
-    process.env.ACCESS_TOKEN_SECRET as string,
-    { expiresIn: "60m" }
-  )
-  const refreshToken = jwt.sign(
-    { userId: user.id },
-    process.env.REFRESH_TOKEN_SECRET as string
-  )
+  const accessToken = jwt.sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET as string, {
+    expiresIn: "60m"
+  })
+  const refreshToken = jwt.sign({ userId: user.id }, process.env.REFRESH_TOKEN_SECRET as string)
 
   return { accessToken, refreshToken }
 }
@@ -43,16 +38,11 @@ async function refresh(data: RefreshRequest) {
   if (!refreshToken) return { error: "No refresh token provided" }
 
   try {
-    const userId = jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET as string
-    )
+    const userId = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string)
 
-    const accessToken = jwt.sign(
-      { userId: userId },
-      process.env.ACCESS_TOKEN_SECRET as string,
-      { expiresIn: "60m" }
-    )
+    const accessToken = jwt.sign({ userId: userId }, process.env.ACCESS_TOKEN_SECRET as string, {
+      expiresIn: "60m"
+    })
 
     return { accessToken }
   } catch (err) {
