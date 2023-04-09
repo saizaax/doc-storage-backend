@@ -8,4 +8,12 @@ async function getById(id: string) {
   return file
 }
 
-export default { getById }
+async function getByUserId(userId: string) {
+  const docs = await filesModel.getByUserId(userId)
+
+  const files = docs?.Document?.map((item) => item?.File).flat()
+
+  return files
+}
+
+export default { getById, getByUserId }

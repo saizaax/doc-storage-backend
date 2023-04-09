@@ -37,4 +37,23 @@ async function removeFile(fileId: string) {
   })
 }
 
-export default { addFile, removeFile, getById }
+async function getByUserId(userId: string) {
+  return await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      Document: {
+        include: {
+          File: {
+            include: {
+              Format: true,
+              Text: true,
+              Translation: true
+            }
+          }
+        }
+      }
+    }
+  })
+}
+
+export default { addFile, removeFile, getById, getByUserId }

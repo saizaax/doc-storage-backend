@@ -13,4 +13,13 @@ async function getById(req: UserRequest, res: Response, next: NextFunction) {
   }
 }
 
-export default { getById }
+async function getByUserId(req: UserRequest, res: Response, next: NextFunction) {
+  try {
+    res.json(await filesService.getByUserId(req.userId as string))
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
+export default { getById, getByUserId }
