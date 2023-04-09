@@ -1,5 +1,5 @@
 import { AuthRequest } from "@app-types/auth.types"
-import { generateUsername } from "unique-username-generator";
+import { generateUsername } from "unique-username-generator"
 import { prisma } from "src/index"
 
 async function register(data: AuthRequest) {
