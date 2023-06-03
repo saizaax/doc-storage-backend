@@ -1,5 +1,5 @@
 # Install dependencies
-FROM node:17-alpine as dependencies
+FROM node:17 as dependencies
 WORKDIR /doc-storage-backend
 
 COPY package.json package-lock.json* ./
@@ -10,7 +10,7 @@ RUN npm ci
 RUN npx prisma generate
 
 # Build
-FROM node:17-alpine as builder
+FROM node:17 as builder
 WORKDIR /doc-storage-backend
 
 COPY . .
@@ -20,7 +20,7 @@ COPY --from=dependencies /doc-storage-backend/prisma ./prisma/
 RUN npm run build
 
 # Run
-FROM node:17-alpine as runner
+FROM node:17 as runner
 WORKDIR /doc-storage-backend
 
 ENV NODE_ENV production
