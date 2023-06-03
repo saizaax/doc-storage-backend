@@ -30,6 +30,6 @@ COPY --from=builder /doc-storage-backend/prisma ./prisma/
 COPY --from=builder /doc-storage-backend/package.json ./package.json
 COPY --from=builder /doc-storage-backend/node_modules ./node_modules
 
-EXPOSE 8080
+EXPOSE 8088
 
 CMD ["npm", "run", "start:prod:migrate"]
