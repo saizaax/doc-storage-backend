@@ -1,6 +1,6 @@
 import { UploadDocumentRequest } from "@app-types/document.types"
 import filesModel from "@models/files.model"
-import { prisma } from "src/index"
+import { prisma } from "@/index"
 
 async function add(data: UploadDocumentRequest) {
   const document = await prisma.document.create({

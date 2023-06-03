@@ -13,6 +13,32 @@ services:
       - default
     volumes:
       - postgres-data:/var/lib/postgresql/data
+  backend:
+    build: .
+    networks:
+      - default
+    depends_on:
+      - postgres
+    environment:
+      - PORT=8088
+      - DATABASE_URL=postgresql://saizaax:xaazias@postgres:5432/docstorage?schema=public
+      - ACCESS_TOKEN_SECRET=ACCESS_TOKEN_SECRET_KEY
+      - REFRESH_TOKEN_SECRET=REFRESH_TOKEN_SECRET_KEY
+      # YOS
+      - S3_ENDPOINT=https://storage.yandexcloud.net
+      - S3_BUCKET=EXAMPLE
+      - S3_BUCKET_FOLDER=EXAMPLE
+      - S3_REGION=ru-central1
+      - S3_ACCESS_KEY_ID=EXAMPLE
+      - S3_SECRET_ACCESS_KEY=EXAMPLE
+      # YV
+      - VISION_FOLDER_ID=EXAMPLE
+      - VISION_ACCESS_KEY_ID=EXAMPLE
+      - VISION_SECRET_ACCESS_KEY=EXAMPLE
+      # YT
+      - TRANSLATE_FOLDER_ID=EXAMPLE
+      - TRANSLATE_ACCESS_KEY_ID=EXAMPLE
+      - TRANSLATE_SECRET_ACCESS_KEY=EXAMPLE
 
 networks:
   default:

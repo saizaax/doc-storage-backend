@@ -1,4 +1,4 @@
-import { prisma } from "src/index"
+import { prisma } from "@/index"
 
 async function getById(id: string) {
   return await prisma.translation.findUnique({

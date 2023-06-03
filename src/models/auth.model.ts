@@ -1,6 +1,6 @@
 import { AuthRequest } from "@app-types/auth.types"
 import { generateUsername } from "unique-username-generator"
-import { prisma } from "src/index"
+import { prisma } from "@/index"
 
 async function register(data: AuthRequest) {
   const randomUsername = generateUsername("-", 0, 18)

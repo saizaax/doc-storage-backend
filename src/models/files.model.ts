@@ -1,6 +1,6 @@
 import { UploadDocumentRequest } from "@app-types/document.types"
 import { FileUploadRequest } from "@app-types/files.types"
-import { prisma } from "src/index"
+import { prisma } from "@/index"
 
 async function getById(id: string) {
   return await prisma.file.findUnique({

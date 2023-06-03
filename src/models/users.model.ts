@@ -1,4 +1,4 @@
-import { prisma } from "src/index"
+import { prisma } from "@/index"
 
 async function getAll() {
   return await prisma.user.findMany()
